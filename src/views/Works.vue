@@ -1,10 +1,11 @@
+<!-- Works.vue -->
 <template>
-  <div class="py-12">
+  <div class="py-12 bg-gradient-to-b from-white to-yellow-50">
     <v-container>
       <v-row>
         <v-col cols="12" class="text-center mb-10">
-          <h1 class="text-4xl font-weight-bold mb-4" style="color: var(--primary-color);">Our Works</h1>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <h1 class="text-4xl font-weight-bold mb-4 animate-fade-in-up" style="color: var(--primary-color);">Our Works</h1>
+          <p class="text-gray-600 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
             Explore our portfolio of stunning nail designs and artistry.
           </p>
         </v-col>
@@ -13,11 +14,11 @@
       <!-- 作品分类 -->
       <v-row>
         <v-col cols="12" class="mb-8">
-          <div class="d-flex flex-wrap justify-center">
+          <div class="d-flex flex-wrap justify-center animate-fade-in-up animation-delay-400">
             <v-btn
               v-for="(category, index) in categories"
               :key="index"
-              class="ma-2 text-capitalize"
+              class="ma-2 text-capitalize transition-all duration-300 transform hover:scale-105"
               :color="selectedCategory === category ? 'primary' : 'white'"
               :outlined="selectedCategory !== category"
               @click="selectedCategory = category"
@@ -37,19 +38,22 @@
           lg="3"
           v-for="(work, index) in filteredWorks"
           :key="index"
-          class="mb-6"
+          class="mb-6 animate-fade-in-up"
+          :style="`animation-delay: ${600 + index * 100}ms`"
         >
-          <div class="girlie-card overflow-hidden">
-            <v-img
-              :src="work.image"
-              height="250"
-              class="align-end"
-            >
-              <div class="pa-4" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
-                <h3 class="text-white font-weight-bold">{{ work.title }}</h3>
-                <p class="text-white text-caption">{{ work.category }}</p>
-              </div>
-            </v-img>
+          <div class="girlie-card overflow-hidden transition-all duration-300 hover:shadow-xl">
+            <div class="relative overflow-hidden">
+              <v-img
+                :src="work.image"
+                height="250"
+                class="align-end transition-transform duration-500 hover:scale-110"
+              >
+                <div class="pa-4" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                  <h3 class="text-white font-weight-bold">{{ work.title }}</h3>
+                  <p class="text-white text-caption">{{ work.category }}</p>
+                </div>
+              </v-img>
+            </div>
             <div class="pa-4">
               <p class="text-gray-600 mb-3">{{ work.description }}</p>
               <div class="d-flex justify-space-between align-center">
@@ -67,6 +71,7 @@
                 <v-btn
                   icon
                   small
+                  class="transition-all duration-300 hover:scale-110"
                   style="color: var(--primary-color);"
                 >
                   <v-icon>mdi-heart-outline</v-icon>
@@ -79,11 +84,11 @@
 
       <!-- 加载更多按钮 -->
       <v-row>
-        <v-col cols="12" class="text-center">
+        <v-col cols="12" class="text-center animate-fade-in-up animation-delay-800">
           <v-btn
             large
             outlined
-            class="text-capitalize"
+            class="text-capitalize transition-all duration-300 transform hover:scale-105"
             style="color: var(--primary-color); border-color: var(--primary-color);"
           >
             Load More
@@ -171,3 +176,37 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+</style>

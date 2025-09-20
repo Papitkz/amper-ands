@@ -1,17 +1,31 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-white font-sans">
-    <!-- Decorative top curve -->
-    <div class="gold-curve"></div>
-    
+  <div class="min-h-screen flex flex-col font-sans" style="background: var(--bg-gradient);">
+    <!-- Global Loader -->
+    <div v-if="isLoading" class="loader-container">
+      <div class="loader-content">
+        <div class="loader-logo">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-300 flex items-center justify-center shadow-lg animate-pulse">
+            <span class="text-white font-bold text-2xl">A</span>
+          </div>
+        </div>
+        <div class="loader-text">
+          <p class="text-yellow-600 font-medium">Loading AMPER&ANDS...</p>
+        </div>
+        <div class="loader-bar">
+          <div class="loader-progress"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Navigation -->
-    <header class="bg-white shadow-md border-b border-gray-100 relative z-10 sticky top-0 transition-all duration-300">
+    <header class="bg-white/90 backdrop-blur-sm shadow-md border-b border-yellow-100 relative z-10 sticky top-0 transition-all duration-300">
       <div class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
           <div class="flex items-center space-x-3">
             <div class="w-14 h-14 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-300 flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-110">
               <span class="text-white font-bold text-2xl">A</span>
             </div>
-            <h1 class="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">AMPER&AND</h1>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">AMPER&ANDS</h1>
           </div>
           
           <!-- Desktop Navigation -->
@@ -113,7 +127,7 @@
             <div class="flex space-x-4 pt-2">
               <a href="#" class="text-yellow-600 hover:text-yellow-700 transition-colors">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791-.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                 </svg>
               </a>
               <a href="#" class="text-yellow-600 hover:text-yellow-700 transition-colors">
@@ -127,28 +141,28 @@
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content with Page Transition -->
     <main class="flex-grow">
-      <router-view></router-view>
+      <transition name="page" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-white to-yellow-50 pt-16 pb-8 relative overflow-hidden">
-      <div class="gold-curve" style="top: -1px; bottom: auto; transform: rotate(180deg);"></div>
-      
-      <div class="container mx-auto px-4 relative z-10">
+    <footer class="pro-footer">
+      <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <!-- Company Info -->
           <div class="text-left">
-            <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">AMPER&AND</h3>
+            <h3 class="pro-footer-title">AMPER&ANDS</h3>
             <p class="text-gray-600 mb-8 leading-relaxed">Professional nail artistry at your fingertips. Book an appointment today!</p>
             <div class="flex space-x-4">
-              <a href="#" class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 hover:bg-yellow-200 transition-colors">
+              <a href="#" class="pro-social-link">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
                 </svg>
               </a>
-              <a href="#" class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 hover:bg-yellow-200 transition-colors">
+              <a href="#" class="pro-social-link">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                 </svg>
@@ -158,10 +172,10 @@
           
           <!-- Contact Info -->
           <div class="text-left">
-            <h4 class="text-xl font-serif font-bold mb-6 text-yellow-700">Contact Us</h4>
+            <h4 class="pro-footer-title">Contact Us</h4>
             <div class="space-y-5">
-              <div class="flex items-start">
-                <div class="mt-1 mr-4 text-yellow-600">
+              <div class="pro-contact-item">
+                <div class="pro-contact-icon">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -172,8 +186,8 @@
                   <p class="text-gray-600">City, Country 12345</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <div class="mt-1 mr-4 text-yellow-600">
+              <div class="pro-contact-item">
+                <div class="pro-contact-icon">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                   </svg>
@@ -182,8 +196,8 @@
                   <p class="font-medium">(123) 456-7890</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <div class="mt-1 mr-4 text-yellow-600">
+              <div class="pro-contact-item">
+                <div class="pro-contact-icon">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
@@ -197,7 +211,7 @@
           
           <!-- Opening Hours & CTA -->
           <div class="text-left">
-            <h4 class="text-xl font-serif font-bold mb-6 text-yellow-700">Opening Hours</h4>
+            <h4 class="pro-footer-title">Opening Hours</h4>
             <div class="space-y-4 mb-8">
               <div class="flex justify-between items-center pb-2 border-b border-yellow-100">
                 <span class="font-medium">Monday - Friday:</span>
@@ -215,7 +229,7 @@
             
             <router-link 
               to="/appointments" 
-              class="inline-block bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+              class="btn-primary"
             >
               Book Appointment
             </router-link>
@@ -223,8 +237,8 @@
         </div>
         
         <!-- Footer Bottom -->
-        <div class="border-t border-gray-200 pt-8">
-          <p class="text-gray-600 text-left">&copy; {{ new Date().getFullYear() }} AMPER&AND. All rights reserved.</p>
+        <div class="pro-footer-bottom">
+          <p>&copy; {{ new Date().getFullYear() }} AMPER&ANDS. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -236,41 +250,286 @@ export default {
   name: 'App',
   data() {
     return {
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      isLoading: true
+    }
+  },
+  mounted() {
+    // Simulate initial loading
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+
+    // Show loader when navigating between pages
+    this.$router.beforeEach((to, from, next) => {
+      this.isLoading = true;
+      setTimeout(() => {
+        next();
+      }, 500);
+    });
+
+    this.$router.afterEach(() => {
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 500);
+    });
+  },
+  watch: {
+    $route(to, from) {
+      // Close mobile menu when route changes
+      this.mobileMenuOpen = false;
     }
   }
 }
 </script>
 
 <style>
-.gold-curve {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(to right, #f59e0b, #fbbf24);
-  border-bottom-left-radius: 50% 20px;
-  border-bottom-right-radius: 50% 20px;
-  z-index: 1;
+/* Page transition styles */
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
 }
 
-.pro-button {
-  @apply bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300;
+.page-enter, .page-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Enhanced loader styles */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FFFBEB 0%, #FFF8DC 50%, #FFEFBA 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+  max-width: 90%;
+  width: 400px;
+}
+
+.loader-logo {
+  margin-bottom: 1.5rem;
+}
+
+.loader-text {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-family);
+}
+
+.loader-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.loader-progress {
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: 3px;
+  width: 0;
+  animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { width: 0; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* Professional gold background for all sections */
+section {
+  background: var(--bg-gradient);
+  position: relative;
+}
+
+/* Professional card styles */
+.girlie-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-family);
+}
+
+.girlie-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gold-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.girlie-card:hover::before {
+  transform: scaleX(1);
+}
+
+.girlie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+}
+
+/* Professional button styles */
+.btn-primary {
+  background: var(--gold-gradient);
+  color: white;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  font-family: var(--font-family);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Professional navigation */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  font-family: var(--font-family);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold-gradient);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Professional footer */
+.pro-footer {
+  background: linear-gradient(to bottom, #FFFBEB, #FFF8DC);
+  padding: 4rem 0 2rem;
+  position: relative;
+  font-family: var(--font-family);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .pro-footer-title {
-  @apply text-xl font-serif font-bold mb-6 text-yellow-700;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-family: var(--font-family);
 }
 
-.pro-social-link {
-  @apply w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 hover:bg-yellow-200 transition-colors;
+.pro-footer-link {
+  display: block;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+  font-family: var(--font-family);
 }
 
-.pro-contact-item {
-  @apply flex items-start mb-5;
+.pro-footer-link:hover {
+  color: var(--primary-color);
 }
 
-.pro-contact-icon {
-  @apply mt-1 mr-4 text-yellow-600;
+.pro-footer-bottom {
+  border-top: 1px solid var(--border-color);
+  padding-top: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-light);
+  font-family: var(--font-family);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .pro-heading {
+    font-size: 2rem;
+  }
+  
+  .pro-section {
+    padding: 3rem 0;
+  }
+  
+  .service-list-price {
+    position: static;
+    transform: none;
+    margin-top: 0.5rem;
+  }
+  
+  .service-list-item:hover {
+    padding-left: 0;
+  }
+  
+  /* Mobile navigation adjustments */
+  .nav-link {
+    padding: 0.75rem 0;
+  }
+  
+  /* Mobile card adjustments */
+  .girlie-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Mobile button adjustments */
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile loader adjustments */
+  .loader-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
 }
 </style>

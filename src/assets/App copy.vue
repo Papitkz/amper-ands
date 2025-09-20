@@ -10,7 +10,7 @@
           <div class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-300 flex items-center justify-center">
             <span class="text-white font-bold text-xl">A</span>
           </div>
-                  <h1 class="text-2xl font-bold text-yellow-600">AMPER&AND</h1>
+                  <h1 class="text-2xl font-bold text-yellow-600">AMPER&ANDS</h1>
         </div>
         <nav class="hidden md:flex space-x-8">
           <router-link to="/" class="nav-link text-gray-700 hover:text-yellow-600 transition-colors font-medium">Home</router-link>
@@ -45,7 +45,7 @@
       <div class="container mx-auto px-4 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div class="text-center md:text-left">
-            <h3 class="text-3xl font-bold mb-4 cursive text-yellow-600">AMPER&AND</h3>
+            <h3 class="text-3xl font-bold mb-4 cursive text-yellow-600">AMPER&ANDS</h3>
             <p class="text-gray-600 mb-4">Professional nail artistry at your fingertips. Book an appointment today!</p>
             <div class="flex justify-center md:justify-start space-x-4">
               <a href="#" class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 hover:bg-yellow-200 transition-colors">
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="border-t border-gray-200 pt-6 text-center text-gray-600">
-          <p class="cursive text-lg">&copy; {{ new Date().getFullYear() }} AMPER&AND. All rights reserved.</p>
+          <p class="cursive text-lg">&copy; {{ new Date().getFullYear() }} AMPER&ANDS. All rights reserved.</p>
         </div>
       </div>
     </footer>

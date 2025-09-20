@@ -5,18 +5,18 @@
     
     <div class="container mx-auto px-4 relative z-10">
       <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold mb-4 text-yellow-600 serif gold-accent">Our Services</h1>
-        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+        <h1 class="text-4xl font-bold mb-4 text-yellow-600 serif gold-accent animate-fade-in-up">Our Services</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg animate-fade-in-up animation-delay-200">
           We offer a comprehensive range of nail services to enhance your natural beauty.
         </p>
       </div>
 
       <!-- Service Categories -->
       <div class="mb-20">
-        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent">Service Categories</h2>
+        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Service Categories</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(category, index) in categories" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${index * 100}ms`">
+          <div v-for="(category, index) in categories" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -30,10 +30,10 @@
 
       <!-- Popular Services -->
       <div class="mb-20">
-        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent">Popular Services</h2>
+        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Popular Services</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(popular, index) in popularServices" :key="index" class="girlie-card overflow-hidden animate-fade-in-up" :style="`animation-delay: ${index * 100}ms`">
+          <div v-for="(popular, index) in popularServices" :key="index" class="girlie-card overflow-hidden animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center">
               <div class="text-center">
                 <div class="service-icon mx-auto mb-4">
@@ -64,44 +64,47 @@
         </div>
       </div>
 
-      <!-- Complete Service Menu -->
+      <!-- Complete Service Menu - Card/List Hybrid Design -->
       <div class="mb-20">
-        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent">Complete Service Menu</h2>
+        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Complete Service Menu</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div v-for="(service, index) in services" :key="index" class="girlie-card p-6 animate-fade-in-up" :style="`animation-delay: ${index * 50}ms`">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-xl font-bold">{{ service.name }}</h3>
-              <span class="text-lg font-bold text-yellow-600">{{ service.price }}</span>
-            </div>
-            <p class="text-gray-600 mb-4">{{ service.description }}</p>
-            <div class="flex justify-between items-center">
-              <div class="flex flex-wrap">
-                <span
-                  v-for="(tag, tagIndex) in service.tags"
-                  :key="tagIndex"
-                  class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded mr-2 mb-2"
-                >
-                  {{ tag }}
-                </span>
+        <div class="space-y-6 max-w-4xl mx-auto">
+          <div v-for="(service, index) in services" :key="index" class="service-list-item animate-fade-in-up" :style="`animation-delay: ${400 + index * 50}ms`">
+            <div class="flex flex-col md:flex-row md:items-center">
+              <div class="md:w-2/3 mb-4 md:mb-0 md:pr-6">
+                <h3 class="service-list-title">{{ service.name }}</h3>
+                <p class="service-list-description">{{ service.description }}</p>
+                <div class="flex flex-wrap">
+                  <span
+                    v-for="(tag, tagIndex) in service.tags"
+                    :key="tagIndex"
+                    class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded mr-2 mb-2"
+                  >
+                    {{ tag }}
+                  </span>
+                </div>
               </div>
-              <router-link
-                to="/appointments"
-                class="btn-primary text-sm"
-              >
-                Book
-              </router-link>
+              <div class="md:w-1/3 flex flex-col items-end justify-between">
+                <span class="service-list-price">{{ service.price }}</span>
+                <router-link
+                  to="/appointments"
+                  class="btn-primary text-sm w-full md:w-auto text-center"
+                >
+                  Book
+                </router-link>
+              </div>
             </div>
+            <div class="service-list-line"></div>
           </div>
         </div>
       </div>
 
       <!-- Add-On Services -->
       <div class="mb-20">
-        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent">Add-On Services</h2>
+        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Add-On Services</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(addon, index) in addons" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${index * 100}ms`">
+          <div v-for="(addon, index) in addons" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
@@ -115,7 +118,7 @@
       </div>
 
       <!-- Home Service Information -->
-      <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl shadow-lg p-10 mb-20 relative overflow-hidden">
+      <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl shadow-lg p-10 mb-20 relative overflow-hidden animate-fade-in-up animation-delay-400">
         <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full filter blur-3xl opacity-20 -mr-32 -mt-32"></div>
         <div class="absolute bottom-0 left-0 w-48 h-48 bg-yellow-100 rounded-full filter blur-3xl opacity-20 -ml-24 -mb-24"></div>
         
@@ -181,10 +184,10 @@
 
       <!-- Service Process -->
       <div>
-        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent">Our Service Process</h2>
+        <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Our Service Process</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div v-for="(step, index) in serviceProcess" :key="index" class="text-center animate-fade-in-up" :style="`animation-delay: ${index * 100}ms`">
+          <div v-for="(step, index) in serviceProcess" :key="index" class="text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="relative">
               <div class="service-icon mx-auto mb-4">
                 <span class="text-white font-bold">{{ index + 1 }}</span>
@@ -350,3 +353,46 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.service-item {
+  position: relative;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.animation-delay-50 {
+  animation-delay: 0.05s;
+}
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+</style>

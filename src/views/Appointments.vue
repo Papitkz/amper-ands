@@ -2,14 +2,14 @@
   <div class="py-12 bg-gradient-to-b from-white to-yellow-50 min-h-screen">
     <div class="container mx-auto px-4">
       <div class="text-center mb-10">
-        <h1 class="text-4xl font-bold mb-4 text-yellow-600">Book an Appointment</h1>
-        <p class="text-gray-600 max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold mb-4 text-yellow-600 animate-fade-in-up">Book an Appointment</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
           Schedule your nail service with our easy-to-use booking system.
         </p>
       </div>
 
       <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-xl shadow-lg p-8 border border-yellow-100">
+        <div class="bg-white rounded-xl shadow-lg p-8 border border-yellow-100 animate-fade-in-up animation-delay-400">
           <form @submit.prevent="submitAppointment">
             <!-- 步骤指示器 -->
             <div class="mb-10">
@@ -21,7 +21,7 @@
                   :class="{ 'text-yellow-600': currentStep >= index }"
                 >
                   <div
-                    class="step-circle flex items-center justify-center mb-2"
+                    class="step-circle flex items-center justify-center mb-2 transition-all duration-300"
                     :class="{ 'active': currentStep >= index }"
                   >
                     <span v-if="currentStep > index" class="text-white">
@@ -50,7 +50,7 @@
                 <div
                   v-for="(service, index) in services"
                   :key="index"
-                  class="service-option p-5 rounded-xl border-2 cursor-pointer transition-all duration-300"
+                  class="service-option p-5 rounded-xl border-2 cursor-pointer transition-all duration-300 transform hover:scale-[1.02]"
                   :class="{ 'border-yellow-500 bg-yellow-50 shadow-md': appointment.service === service.name }"
                   @click="appointment.service = service.name"
                 >
@@ -81,7 +81,7 @@
                   <label 
                     v-for="(addon, index) in addons"
                     :key="index"
-                    class="flex items-center p-4 rounded-lg border border-gray-200 hover:bg-yellow-50 cursor-pointer transition-colors"
+                    class="flex items-center p-4 rounded-lg border border-gray-200 hover:bg-yellow-50 cursor-pointer transition-colors duration-300"
                   >
                     <input
                       type="checkbox"
@@ -100,7 +100,7 @@
               <div>
                 <h3 class="font-bold mb-4 text-lg">Service Location</h3>
                 <div class="space-y-3">
-                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors">
+                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors duration-300">
                     <input
                       type="radio"
                       v-model="appointment.location"
@@ -112,7 +112,7 @@
                       <p class="text-gray-600 text-sm">Visit our salon for your appointment</p>
                     </div>
                   </label>
-                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors">
+                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors duration-300">
                     <input
                       type="radio"
                       v-model="appointment.location"
@@ -156,7 +156,7 @@
                         v-for="(time, index) in availableTimes"
                         :key="index"
                         type="button"
-                        class="py-3 px-2 rounded-lg text-sm font-medium border transition-all duration-200"
+                        class="py-3 px-2 rounded-lg text-sm font-medium border transition-all duration-200 transform hover:scale-105"
                         :class="appointment.time === time ? 'bg-yellow-600 text-white border-yellow-600 shadow-md' : 'border-gray-300 hover:bg-gray-100'"
                         @click="appointment.time = time"
                       >
@@ -184,7 +184,7 @@
                     v-model="appointment.name"
                     required
                     placeholder="Enter your full name"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600 transition-all duration-300"
                   >
                 </div>
 
@@ -195,7 +195,7 @@
                     v-model="appointment.phone"
                     required
                     placeholder="Enter your phone number"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600 transition-all duration-300"
                   >
                 </div>
 
@@ -206,7 +206,7 @@
                     v-model="appointment.email"
                     required
                     placeholder="Enter your email address"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600 transition-all duration-300"
                   >
                 </div>
 
@@ -216,11 +216,11 @@
                     v-model="appointment.notes"
                     rows="4"
                     placeholder="Any special requests or notes for your appointment"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-600 focus:border-yellow-600 transition-all duration-300"
                   ></textarea>
                 </div>
 
-                <div class="flex items-start p-4 bg-yellow-50 rounded-lg">
+                <div class="flex items-start p-4 bg-yellow-50 rounded-lg transition-all duration-300 hover:bg-yellow-100">
                   <input
                     type="checkbox"
                     v-model="appointment.terms"
@@ -280,7 +280,7 @@
               </div>
 
               <div class="text-center mb-6">
-                <div class="inline-flex items-center bg-blue-50 text-blue-800 rounded-lg p-4 mb-4">
+                <div class="inline-flex items-center bg-blue-50 text-blue-800 rounded-lg p-4 mb-4 transition-all duration-300 hover:bg-blue-100">
                   <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
@@ -288,7 +288,7 @@
                 </div>
                 <button
                   type="submit"
-                  class="bg-yellow-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-700 transition-colors shadow-lg hover:shadow-xl flex items-center justify-center mx-auto"
+                  class="bg-yellow-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto transform hover:scale-105"
                   :disabled="loading"
                 >
                   <span v-if="loading" class="flex items-center">
@@ -313,7 +313,7 @@
               <button
                 v-if="currentStep > 0"
                 type="button"
-                class="px-6 py-3 border border-yellow-600 text-yellow-600 rounded-full font-medium hover:bg-yellow-50 transition-colors flex items-center"
+                class="px-6 py-3 border border-yellow-600 text-yellow-600 rounded-full font-medium hover:bg-yellow-50 transition-all duration-300 flex items-center transform hover:scale-105"
                 @click="prevStep"
               >
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -325,7 +325,7 @@
               <button
                 v-if="currentStep < steps.length - 1"
                 type="button"
-                class="bg-yellow-600 text-white px-6 py-3 rounded-full font-medium hover:bg-yellow-700 transition-colors flex items-center"
+                class="bg-yellow-600 text-white px-6 py-3 rounded-full font-medium hover:bg-yellow-700 transition-all duration-300 flex items-center transform hover:scale-105"
                 @click="nextStep"
                 :disabled="!canProceed"
               >
@@ -574,5 +574,29 @@ export default {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
 }
 </style>

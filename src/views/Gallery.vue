@@ -165,3 +165,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* The gallery styles are already defined in your main.css file */
+</style>
