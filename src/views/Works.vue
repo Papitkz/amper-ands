@@ -1,4 +1,3 @@
-<!-- Works.vue -->
 <template>
   <div class="py-12 bg-gradient-to-b from-white to-yellow-50">
     <v-container>
@@ -41,7 +40,7 @@
           class="mb-6 animate-fade-in-up"
           :style="`animation-delay: ${600 + index * 100}ms`"
         >
-          <div class="girlie-card overflow-hidden transition-all duration-300 hover:shadow-xl">
+          <div class="girlie-card overflow-hidden transition-all duration-300 hover:shadow-xl hover-lift">
             <div class="relative overflow-hidden">
               <v-img
                 :src="work.image"

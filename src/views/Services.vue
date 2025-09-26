@@ -15,8 +15,44 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Service Categories</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(category, index) in categories" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+        <!-- Mobile view: Single card with expandable sections -->
+        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
+          <div v-for="(category, index) in categories" :key="index" class="mb-6 last:mb-0">
+            <div 
+              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
+              @click="toggleCategory(index)"
+            >
+              <div class="flex items-center">
+                <div class="service-icon mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold">{{ category.name }}</h3>
+              </div>
+              <svg 
+                class="w-5 h-5 transition-transform duration-300" 
+                :class="{ 'rotate-180': expandedCategory === index }" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div 
+              v-show="expandedCategory === index" 
+              class="mt-2 pl-16 pr-4 pb-2 text-gray-600 animate-fade-in"
+            >
+              {{ category.description }}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div v-for="(category, index) in categories" :key="index" class="girlie-card p-8 text-center animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -32,8 +68,56 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Popular Services</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(popular, index) in popularServices" :key="index" class="girlie-card overflow-hidden animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+        <!-- Mobile view: Single card with expandable sections -->
+        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
+          <div v-for="(popular, index) in popularServices" :key="index" class="mb-6 last:mb-0">
+            <div 
+              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
+              @click="togglePopularService(index)"
+            >
+              <div class="flex items-center">
+                <div class="service-icon mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold">{{ popular.name }}</h3>
+                  <span class="text-yellow-600 font-bold">{{ popular.price }}</span>
+                </div>
+              </div>
+              <svg 
+                class="w-5 h-5 transition-transform duration-300" 
+                :class="{ 'rotate-180': expandedPopularService === index }" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div 
+              v-show="expandedPopularService === index" 
+              class="mt-2 pl-16 pr-4 pb-2 animate-fade-in"
+            >
+              <p class="text-gray-600 mb-2">{{ popular.description }}</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">{{ popular.duration }}</span>
+                <router-link
+                  to="/appointments"
+                  class="btn-primary text-sm"
+                >
+                  Book Now
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div v-for="(popular, index) in popularServices" :key="index" class="girlie-card overflow-hidden animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center">
               <div class="text-center">
                 <div class="service-icon mx-auto mb-4">
@@ -103,8 +187,47 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Add-On Services</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(addon, index) in addons" :key="index" class="girlie-card p-8 text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+        <!-- Mobile view: Single card with expandable sections -->
+        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
+          <div v-for="(addon, index) in addons" :key="index" class="mb-6 last:mb-0">
+            <div 
+              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
+              @click="toggleAddon(index)"
+            >
+              <div class="flex items-center">
+                <div class="service-icon mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold">{{ addon.name }}</h3>
+                  <span class="text-yellow-600 font-bold">{{ addon.price }}</span>
+                </div>
+              </div>
+              <svg 
+                class="w-5 h-5 transition-transform duration-300" 
+                :class="{ 'rotate-180': expandedAddon === index }" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div 
+              v-show="expandedAddon === index" 
+              class="mt-2 pl-16 pr-4 pb-2 animate-fade-in"
+            >
+              <p class="text-gray-600 mb-2">{{ addon.description }}</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div v-for="(addon, index) in addons" :key="index" class="girlie-card p-8 text-center animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
@@ -186,7 +309,24 @@
       <div>
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Our Service Process</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Mobile view: Vertical steps -->
+        <div v-if="isMobile" class="max-w-md mx-auto">
+          <div v-for="(step, index) in serviceProcess" :key="index" class="flex mb-8 animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+            <div class="flex flex-col items-center mr-4">
+              <div class="service-icon mb-2">
+                <span class="text-white font-bold">{{ index + 1 }}</span>
+              </div>
+              <div v-if="index < serviceProcess.length - 1" class="w-1 h-16 bg-yellow-200"></div>
+            </div>
+            <div class="flex-1 pb-8">
+              <h3 class="font-bold mb-2">{{ step.title }}</h3>
+              <p class="text-gray-600 text-sm">{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Horizontal steps -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div v-for="(step, index) in serviceProcess" :key="index" class="text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="relative">
               <div class="service-icon mx-auto mb-4">
@@ -211,6 +351,10 @@ export default {
   name: 'Services',
   data() {
     return {
+      isMobile: false,
+      expandedCategory: null,
+      expandedPopularService: null,
+      expandedAddon: null,
       categories: [
         {
           name: 'Gel Nails',
@@ -349,6 +493,27 @@ export default {
           description: 'Final touches and aftercare advice'
         }
       ]
+    }
+  },
+  mounted() {
+    this.checkIfMobile();
+    window.addEventListener('resize', this.checkIfMobile);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkIfMobile);
+  },
+  methods: {
+    checkIfMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+    toggleCategory(index) {
+      this.expandedCategory = this.expandedCategory === index ? null : index;
+    },
+    togglePopularService(index) {
+      this.expandedPopularService = this.expandedPopularService === index ? null : index;
+    },
+    toggleAddon(index) {
+      this.expandedAddon = this.expandedAddon === index ? null : index;
     }
   }
 }

@@ -18,15 +18,97 @@
       </div>
       
       <div class="container mx-auto px-4 relative z-10">
-        <div class="flex flex-col md:flex-row items-center">
+        <!-- Mobile view: Collapsible hero section -->
+        <div v-if="isMobile" class="text-center">
+          <div class="mb-6 flex justify-center">
+            <img
+              style="height:100px !important"
+              src="../assets/and.png"
+              alt="AMPER&AND Logo"
+              class="object-contain"
+            />
+          </div>
+          
+          <div class="inline-block mb-3 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium animate-fade-in-up">
+            Art at Your Fingertips
+          </div>
+          <h1 class="text-4xl font-bold mb-4 text-gray-800 leading-tight animate-fade-in-up animation-delay-100">
+            Professional <span class="text-yellow-600">Nail Artistry</span>
+          </h1>
+          <p class="text-lg text-gray-600 mb-6 animate-fade-in-up animation-delay-200">
+            Experience luxury nail services in the comfort of your home.
+          </p>
+          
+          <div class="relative inline-block mb-6 animate-fade-in-up animation-delay-300">
+            <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+            <div class="relative">
+              <img style="height:300px !important"
+                src="../assets/sandra1.png"
+                alt="Sandra Kate Gudez - Nail Technician"
+                class="rounded-xl shadow-lg mx-auto transform transition-all duration-700 hover:scale-105 hover:shadow-2xl max-w-full h-auto relative z-10"
+              />
+              <!-- Experience badge -->
+              <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-yellow-500 to-yellow-300 text-white rounded-lg p-3 shadow-lg transform rotate-6 z-20">
+                <p class="text-sm font-bold">3+ Years Experience</p>
+              </div>
+            </div>
+          </div>
+          
+          <h2 class="text-xl font-bold text-yellow-600 cursive mb-2 animate-fade-in-up animation-delay-400">SANDRA KATE GUDEZ</h2>
+          <p class="text-gray-600 italic mb-6 animate-fade-in-up animation-delay-400">Master Nail Technician & Owner</p>
+          
+          <div class="flex flex-wrap justify-center gap-4 mb-6 animate-fade-in-up animation-delay-500">
+            <router-link
+              to="/appointments"
+              class="group relative px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden btn-enhanced"
+            >
+              <span class="relative z-10 flex items-center">
+                Book Now
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </span>
+            </router-link>
+            <router-link
+              to="/services"
+              class="group relative px-6 py-3 bg-white text-yellow-600 font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-600 hover:bg-yellow-50 overflow-hidden btn-enhanced"
+            >
+              <span class="relative z-10 flex items-center">
+                Our Services
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </router-link>
+          </div>
+          
+          <!-- Trust indicators -->
+          <div class="flex justify-center items-center space-x-6 animate-fade-in-up animation-delay-600">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="text-gray-600">4.9/5 Rating</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-600">100+ Happy Clients</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Original layout -->
+        <div v-else class="flex flex-col md:flex-row items-center">
           <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
             <!-- Logo image added here -->
-            <div class="mb-6 flex  md:justify-start">
+            <div class="mb-6 flex justify-center md:justify-start">
               <img
-              style="height:1250px !"
+                style="height:125px !important"
                 src="../assets/and.png"
                 alt="AMPER&AND Logo"
-                class=" object-contain"
+                class="object-contain"
               />
             </div>
             
@@ -42,7 +124,7 @@
             <div class="flex flex-wrap gap-4 animate-fade-in-up animation-delay-300">
               <router-link
                 to="/appointments"
-                class="group relative px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+                class="group relative px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden btn-enhanced"
               >
                 <span class="relative z-10 flex items-center">
                   Book Now
@@ -50,11 +132,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                   </svg>
                 </span>
-                <div class="absolute inset-0 bg-gradient-to-r from-yellow-600 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </router-link>
               <router-link
                 to="/services"
-                class="group relative px-8 py-4 bg-white text-yellow-600 font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-600 hover:bg-yellow-50 overflow-hidden"
+                class="group relative px-8 py-4 bg-white text-yellow-600 font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-600 hover:bg-yellow-50 overflow-hidden btn-enhanced"
               >
                 <span class="relative z-10 flex items-center">
                   Our Services
@@ -87,7 +168,7 @@
               <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
               <div class="relative">
                 <img style="height:550px !important"
-                  src="../assets/sandra2.png"
+                  src="../assets/sandra.png"
                   alt="Sandra Kate Gudez - Nail Technician"
                   class="rounded-xl shadow-lg mx-auto transform transition-all duration-700 hover:scale-105 hover:shadow-2xl max-w-full h-auto relative z-10"
                 />
@@ -145,33 +226,46 @@
           <p class="pro-subheading animate-fade-in-up animation-delay-400">
             With over a decade of experience in the nail industry, Sandra Kate Gudez brings passion, creativity, and precision to every client. Her dedication to the craft and attention to detail ensures that each client leaves with nails that not only look beautiful but are also healthy and well-cared for.
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div class="pro-feature animate-fade-in-up animation-delay-600 group">
+          
+          <!-- Mobile view: Vertical features -->
+          <div v-if="isMobile" class="mt-12 space-y-8">
+            <div v-for="(feature, index) in features" :key="index" class="pro-card p-6 animate-fade-in-up" :style="`animation-delay: ${600 + index * 200}ms`">
+              <div class="flex items-center">
+                <div class="pro-icon mr-4">
+                  <svg v-if="feature.icon === 'shield'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                  <svg v-else-if="feature.icon === 'chat'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                  </svg>
+                  <svg v-else-if="feature.icon === 'lightning'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div class="text-left">
+                  <h3 class="pro-feature-title">{{ feature.title }}</h3>
+                  <p class="pro-feature-text">{{ feature.text }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Desktop view: Grid features -->
+          <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div v-for="(feature, index) in features" :key="index" class="pro-feature animate-fade-in-up animation-delay-600 group" :style="`animation-delay: ${600 + index * 200}ms`">
               <div class="pro-icon group-hover:animate-pulse">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg v-if="feature.icon === 'shield'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
-              </div>
-              <h3 class="pro-feature-title">Certified Professional</h3>
-              <p class="pro-feature-text">Fully licensed and certified in all nail techniques</p>
-            </div>
-            <div class="pro-feature animate-fade-in-up animation-delay-800 group">
-              <div class="pro-icon group-hover:animate-pulse">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                <svg v-else-if="feature.icon === 'chat'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                 </svg>
-              </div>
-              <h3 class="pro-feature-title">Personalized Service</h3>
-              <p class="pro-feature-text">Custom designs tailored to your unique style</p>
-            </div>
-            <div class="pro-feature animate-fade-in-up animation-delay-1000 group">
-              <div class="pro-icon group-hover:animate-pulse">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg v-else-if="feature.icon === 'lightning'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
-              <h3 class="pro-feature-title">Latest Trends</h3>
-              <p class="pro-feature-text">Always up-to-date with the latest nail art trends</p>
+              <h3 class="pro-feature-title">{{ feature.title }}</h3>
+              <p class="pro-feature-text">{{ feature.text }}</p>
             </div>
           </div>
         </div>
@@ -193,41 +287,45 @@
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="pro-card animate-fade-in-up animation-delay-400 group">
+        <!-- Mobile view: Vertical cards -->
+        <div v-if="isMobile" class="space-y-6">
+          <div v-for="(service, index) in homeServices" :key="index" class="pro-card p-6 animate-fade-in-up" :style="`animation-delay: ${400 + index * 200}ms`">
+            <div class="flex items-start">
+              <div class="pro-icon mr-4 flex-shrink-0">
+                <svg v-if="service.icon === 'truck'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <svg v-else-if="service.icon === 'currency'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <svg v-else-if="service.icon === 'calendar'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div class="text-left">
+                <h3 class="pro-feature-title">{{ service.title }}</h3>
+                <p class="pro-feature-text">{{ service.text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div v-for="(service, index) in homeServices" :key="index" class="pro-card animate-fade-in-up animation-delay-400 group hover-lift" :style="`animation-delay: ${400 + index * 200}ms`">
             <div class="pro-icon group-hover:animate-pulse">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg v-if="service.icon === 'truck'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-            </div>
-            <h3 class="pro-feature-title">Transportation Included</h3>
-            <p class="pro-feature-text">
-              Our technicians travel to your location with all necessary equipment and products.
-            </p>
-          </div>
-          
-          <div class="pro-card animate-fade-in-up animation-delay-600 group">
-            <div class="pro-icon group-hover:animate-pulse">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              <svg v-else-if="service.icon === 'currency'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-            </div>
-            <h3 class="pro-feature-title">Home Service Fee</h3>
-            <p class="pro-feature-text">
-              A small home service fee is added to cover travel expenses and setup time.
-            </p>
-          </div>
-          
-          <div class="pro-card animate-fade-in-up animation-delay-800 group">
-            <div class="pro-icon group-hover:animate-pulse">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg v-else-if="service.icon === 'calendar'" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
             </div>
-            <h3 class="pro-feature-title">Flexible Scheduling</h3>
-            <p class="pro-feature-text">
-              Book appointments at your convenience, including evenings and weekends.
-            </p>
+            <h3 class="pro-feature-title">{{ service.title }}</h3>
+            <p class="pro-feature-text">{{ service.text }}</p>
           </div>
         </div>
       </div>
@@ -248,8 +346,74 @@
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(service, index) in services" :key="index" class="pro-card animate-fade-in-up group" :style="`animation-delay: ${400 + index * 100}ms`">
+        <!-- Mobile view: Carousel -->
+        <div v-if="isMobile" class="relative">
+          <div class="carousel-container overflow-hidden">
+            <div 
+              class="carousel-track flex transition-transform duration-500 ease-in-out" 
+              :style="{ transform: `translateX(-${servicesCurrentSlide * 100}%)` }"
+            >
+              <div 
+                v-for="(service, index) in services" 
+                :key="index" 
+                class="carousel-slide w-full flex-shrink-0 px-2"
+              >
+                <div class="pro-card p-6 h-full animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+                  <div class="pro-icon mx-auto mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="pro-feature-title text-center">{{ service.name }}</h3>
+                  <br>
+                  <p class="pro-feature-text text-center">{{ service.description }}</p>
+                  <router-link
+                    to="/services"
+                    class="btn-primary text-sm mt-4 block text-center"
+                  >
+                    Learn More
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Carousel navigation -->
+          <div class="flex justify-center mt-6 space-x-2">
+            <button 
+              v-for="(_, index) in services" 
+              :key="index" 
+              @click="servicesGoToSlide(index)"
+              class="w-3 h-3 rounded-full transition-colors duration-300"
+              :class="index === servicesCurrentSlide ? 'bg-yellow-500' : 'bg-gray-300'"
+              aria-label="Go to slide {{ index + 1 }}"
+            ></button>
+          </div>
+          
+          <!-- Carousel arrows -->
+          <button 
+            @click="servicesPrevSlide"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-yellow-600 rounded-full p-2 shadow-md transition-all duration-300"
+            aria-label="Previous slide"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button 
+            @click="servicesNextSlide"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-yellow-600 rounded-full p-2 shadow-md transition-all duration-300"
+            aria-label="Next slide"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div v-for="(service, index) in services" :key="index" class="pro-card animate-fade-in-up group hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="pro-icon group-hover:animate-pulse">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -257,10 +421,10 @@
             </div>
             <h3 class="pro-feature-title">{{ service.name }}</h3>
             <p class="pro-feature-text">{{ service.description }}</p>
-            <br/>
+            <br></br>
             <router-link
               to="/services"
-              class="btn-primary mt-4"
+              class="btn-primary mt-4 ml-n2"
             >
               Learn More
             </router-link>
@@ -284,8 +448,74 @@
           </p>
         </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          <div v-for="(design, index) in popularDesigns" :key="index" class="pro-card overflow-hidden animate-fade-in-up group" :style="`animation-delay: ${400 + index * 100}ms`">
+        <!-- Mobile view: Carousel -->
+        <div v-if="isMobile" class="relative">
+          <div class="carousel-container overflow-hidden">
+            <div 
+              class="carousel-track flex transition-transform duration-500 ease-in-out" 
+              :style="{ transform: `translateX(-${designsCurrentSlide * 100}%)` }"
+            >
+              <div 
+                v-for="(design, index) in popularDesigns" 
+                :key="index" 
+                class="carousel-slide w-full flex-shrink-0 px-2"
+              >
+                <div class="pro-card overflow-hidden h-full animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+                  <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center relative overflow-hidden">
+                    <img
+                      :src="design.link"
+                      :alt="design.name"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="font-bold mb-1">{{ design.name }}</h3>
+                    <p class="text-gray-600 text-sm mb-3">{{ design.description }}</p>
+                    <router-link to="/gallery" class="btn-primary text-sm block text-center">
+                      View Gallery
+                    </router-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Carousel navigation -->
+          <div class="flex justify-center mt-6 space-x-2">
+            <button 
+              v-for="(_, index) in popularDesigns" 
+              :key="index" 
+              @click="designsGoToSlide(index)"
+              class="w-3 h-3 rounded-full transition-colors duration-300"
+              :class="index === designsCurrentSlide ? 'bg-yellow-500' : 'bg-gray-300'"
+              aria-label="Go to slide {{ index + 1 }}"
+            ></button>
+          </div>
+          
+          <!-- Carousel arrows -->
+          <button 
+            @click="designsPrevSlide"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-yellow-600 rounded-full p-2 shadow-md transition-all duration-300"
+            aria-label="Previous slide"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button 
+            @click="designsNextSlide"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-yellow-600 rounded-full p-2 shadow-md transition-all duration-300"
+            aria-label="Next slide"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Desktop view: Grid layout -->
+        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div v-for="(design, index) in popularDesigns" :key="index" class="pro-card overflow-hidden animate-fade-in-up group hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
             <div class="h-64 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center relative overflow-hidden">
               <img
                 :src="design.link"
@@ -327,6 +557,9 @@ export default {
   name: 'Home',
   data() {
     return {
+      isMobile: false,
+      servicesCurrentSlide: 0,
+      designsCurrentSlide: 0,
       services: [
         {
           name: 'Gel Nails',
@@ -343,6 +576,40 @@ export default {
         {
           name: 'Gel Polish Add-on',
           description: 'Upgrade your manicure with a durable gel polish.'
+        }
+      ],
+      features: [
+        {
+          icon: 'shield',
+          title: 'Certified Professional',
+          text: 'Fully licensed and certified in all nail techniques'
+        },
+        {
+          icon: 'chat',
+          title: 'Personalized Service',
+          text: 'Custom designs tailored to your unique style'
+        },
+        {
+          icon: 'lightning',
+          title: 'Latest Trends',
+          text: 'Always up-to-date with the latest nail art trends'
+        }
+      ],
+      homeServices: [
+        {
+          icon: 'truck',
+          title: 'Transportation Included',
+          text: 'Our technicians travel to your location with all necessary equipment and products.'
+        },
+        {
+          icon: 'currency',
+          title: 'Home Service Fee',
+          text: 'A small home service fee is added to cover travel expenses and setup time.'
+        },
+        {
+          icon: 'calendar',
+          title: 'Flexible Scheduling',
+          text: 'Book appointments at your convenience, including evenings and weekends.'
         }
       ],
       popularDesigns: [
@@ -366,47 +633,60 @@ export default {
           description: 'Mirror-like metallic shine',
           link:'https://i.pinimg.com/736x/41/4a/05/414a0501098b2a8bef923b45a69ea9d6.jpg'
         }
-      ],
-      testimonials: [
-        {
-          name: 'Maria Santos',
-          text: 'Sandra is amazing! My nails have never looked better. She pays so much attention to detail and the home service is so convenient.'
-        },
-        {
-          name: 'Jennifer Lee',
-          text: 'I\'ve been getting my nails done by Sandra for over a year now. She\'s professional, talented, and always makes me feel comfortable.'
-        },
-        {
-          name: 'Anna Reyes',
-          text: 'The best nail technician I\'ve ever had! My gel polish lasts for weeks without chipping. Highly recommend her services.'
-        },
-        {
-          name: 'Carla Mendez',
-          text: 'Sandra transformed my damaged nails into beautiful, healthy ones. She\'s truly a nail artist and I wouldn\'t trust anyone else with my nails.'
-        }
-      ],
-      contactForm: {
-        name: '',
-        email: '',
-        message: ''
-      }
+      ]
     }
   },
+  mounted() {
+    this.checkIfMobile();
+    window.addEventListener('resize', this.checkIfMobile);
+    
+    // Auto-rotate carousels
+    this.servicesInterval = setInterval(() => {
+      if (this.isMobile) {
+        this.servicesNextSlide();
+      }
+    }, 5000);
+    
+    this.designsInterval = setInterval(() => {
+      if (this.isMobile) {
+        this.designsNextSlide();
+      }
+    }, 5000);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkIfMobile);
+    clearInterval(this.servicesInterval);
+    clearInterval(this.designsInterval);
+  },
   methods: {
+    checkIfMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
     scrollToNext() {
       const aboutSection = this.$refs.aboutSection;
       if (aboutSection) {
         aboutSection.scrollIntoView({ behavior: 'smooth' });
       }
     },
-    submitForm() {
-      // Form submission logic here
-      alert('Thank you for your message! We will get back to you soon.');
-      this.contactForm = {
-        name: '',
-        email: '',
-        message: ''
-      };
+    // Services carousel methods
+    servicesNextSlide() {
+      this.servicesCurrentSlide = (this.servicesCurrentSlide + 1) % this.services.length;
+    },
+    servicesPrevSlide() {
+      this.servicesCurrentSlide = (this.servicesCurrentSlide - 1 + this.services.length) % this.services.length;
+    },
+    servicesGoToSlide(index) {
+      this.servicesCurrentSlide = index;
+    },
+    // Designs carousel methods
+    designsNextSlide() {
+      this.designsCurrentSlide = (this.designsCurrentSlide + 1) % this.popularDesigns.length;
+    },
+    designsPrevSlide() {
+      this.designsCurrentSlide = (this.designsCurrentSlide - 1 + this.popularDesigns.length) % this.popularDesigns.length;
+    },
+    designsGoToSlide(index) {
+      this.designsCurrentSlide = index;
     }
   }
 }
@@ -510,6 +790,22 @@ export default {
 
 .animate-bounce {
   animation: bounce 2s infinite;
+}
+
+/* Carousel styles */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
 }
 
 /* Professional gold background for all sections */

@@ -2,8 +2,8 @@
   <div class="py-12 bg-white">
     <div class="container mx-auto px-4">
       <div class="text-center mb-10">
-        <h1 class="text-4xl font-bold mb-4 text-yellow-600">Our Gallery</h1>
-        <p class="text-gray-600 max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold mb-4 text-yellow-600 animate-fade-in-up">Our Gallery</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
           Explore our portfolio of stunning nail designs and artistry.
         </p>
       </div>
@@ -13,7 +13,7 @@
         <button
           v-for="(category, index) in categories"
           :key="index"
-          class="m-2 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+          class="m-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
           :class="selectedCategory === category ? 'bg-yellow-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
           @click="selectedCategory = category"
         >
@@ -26,7 +26,8 @@
         <div
           v-for="(work, index) in filteredWorks"
           :key="index"
-          class="gallery-item overflow-hidden rounded-lg shadow-md"
+          class="gallery-item overflow-hidden rounded-lg shadow-md animate-fade-in-up"
+          :style="`animation-delay: ${400 + index * 100}ms`"
         >
           <img
             :src="work.image"
@@ -54,7 +55,7 @@
 
       <!-- 加载更多按钮 -->
       <div class="text-center mt-10">
-        <button class="px-6 py-3 border border-yellow-600 text-yellow-600 rounded-full hover:bg-yellow-600 hover:text-white transition-colors">
+        <button class="px-6 py-3 border border-yellow-600 text-yellow-600 rounded-full hover:bg-yellow-600 hover:text-white transition-all duration-300 transform hover:scale-105">
           Load More
         </button>
       </div>

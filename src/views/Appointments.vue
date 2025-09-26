@@ -100,28 +100,34 @@
               <div>
                 <h3 class="font-bold mb-4 text-lg">Service Location</h3>
                 <div class="space-y-3">
-                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors duration-300">
+                  <!-- Disabled Salon Visit Option -->
+                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 opacity-50 cursor-not-allowed">
                     <input
                       type="radio"
                       v-model="appointment.location"
                       value="salon"
                       class="h-5 w-5 text-yellow-600 focus:ring-yellow-500"
+                      disabled
                     >
                     <div class="ml-4">
                       <span class="font-medium text-lg">Salon Visit</span>
                       <p class="text-gray-600 text-sm">Visit our salon for your appointment</p>
+                      <span class="inline-block mt-1 px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">Currently unavailable</span>
                     </div>
                   </label>
-                  <label class="flex items-center p-4 rounded-xl border-2 border-gray-200 hover:border-yellow-300 cursor-pointer transition-colors duration-300">
+                  <!-- Home Service (Default) -->
+                  <label class="flex items-center p-4 rounded-xl border-2 border-yellow-500 bg-yellow-50 cursor-pointer transition-colors duration-300">
                     <input
                       type="radio"
                       v-model="appointment.location"
                       value="home"
                       class="h-5 w-5 text-yellow-600 focus:ring-yellow-500"
+                      checked
                     >
                     <div class="ml-4">
                       <span class="font-medium text-lg">Home Service</span>
                       <p class="text-gray-600 text-sm">We'll come to your location (+P300)</p>
+                      <span class="inline-block mt-1 px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Recommended</span>
                     </div>
                   </label>
                 </div>
@@ -167,6 +173,60 @@
                       <p class="text-gray-600 mb-2">Selected Time</p>
                       <p class="text-xl font-bold text-yellow-600">{{ appointment.time }}</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Home Service Address (shown only when home service is selected) -->
+              <div v-if="appointment.location === 'home'" class="mt-8 bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h3 class="font-bold mb-4 text-lg text-blue-800 flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Home Service Address
+                </h3>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
+                    <input
+                      type="text"
+                      v-model="appointment.address"
+                      required
+                      placeholder="Enter your complete address"
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                    >
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Barangay</label>
+                      <input
+                        type="text"
+                        v-model="appointment.barangay"
+                        required
+                        placeholder="Barangay"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                      <input
+                        type="text"
+                        v-model="appointment.city"
+                        required
+                        placeholder="City"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                      >
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Additional Directions (Optional)</label>
+                    <textarea
+                      v-model="appointment.directions"
+                      rows="2"
+                      placeholder="Landmarks, gate color, etc."
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                    ></textarea>
                   </div>
                 </div>
               </div>
@@ -253,6 +313,10 @@
                   <div class="flex justify-between pb-3 border-b border-yellow-100">
                     <span class="font-bold text-gray-700">Location:</span>
                     <span class="font-medium">{{ appointment.location === 'home' ? 'Home Service' : 'Salon' }}</span>
+                  </div>
+                  <div v-if="appointment.location === 'home'" class="flex justify-between pb-3 border-b border-yellow-100">
+                    <span class="font-bold text-gray-700">Address:</span>
+                    <span class="font-medium">{{ appointment.address }}, {{ appointment.barangay }}, {{ appointment.city }}</span>
                   </div>
                   <div class="flex justify-between pb-3 border-b border-yellow-100">
                     <span class="font-bold text-gray-700">Date:</span>
@@ -358,14 +422,18 @@ export default {
       appointment: {
         service: '',
         addons: [],
-        location: 'salon',
+        location: 'home', // Default to home service
         date: new Date().toISOString().substr(0, 10),
         time: '',
         name: '',
         phone: '',
         email: '',
         notes: '',
-        terms: false
+        terms: false,
+        address: '',
+        barangay: '',
+        city: '',
+        directions: ''
       },
       services: [
         {
@@ -442,7 +510,14 @@ export default {
       if (this.currentStep === 0) {
         return this.appointment.service !== ''
       } else if (this.currentStep === 1) {
-        return this.appointment.date !== '' && this.appointment.time !== ''
+        const dateAndTimeValid = this.appointment.date !== '' && this.appointment.time !== ''
+        if (this.appointment.location === 'home') {
+          return dateAndTimeValid && 
+                 this.appointment.address !== '' && 
+                 this.appointment.barangay !== '' && 
+                 this.appointment.city !== ''
+        }
+        return dateAndTimeValid
       } else if (this.currentStep === 2) {
         return this.appointment.name !== '' && this.appointment.phone !== '' && 
                this.appointment.email !== '' && this.appointment.terms
@@ -525,14 +600,18 @@ export default {
       this.appointment = {
         service: '',
         addons: [],
-        location: 'salon',
+        location: 'home', // Keep home service as default
         date: new Date().toISOString().substr(0, 10),
         time: '',
         name: '',
         phone: '',
         email: '',
         notes: '',
-        terms: false
+        terms: false,
+        address: '',
+        barangay: '',
+        city: '',
+        directions: ''
       }
     }
   }

@@ -65,7 +65,7 @@
             <p class="text-gray-600 mb-2">123 Beauty Street</p>
             <p class="text-gray-600 mb-2">City, Country 12345</p>
             <p class="text-gray-600 mb-2">Phone: (123) 456-7890</p>
-            <p class="text-gray-600">Email: info@amperand.com</p>
+            <p class="text-gray-600">Email: info@amperands.com</p>
           </div>
           <div class="text-center md:text-right">
             <h4 class="font-bold mb-4 text-lg serif gold-accent">Opening Hours</h4>
