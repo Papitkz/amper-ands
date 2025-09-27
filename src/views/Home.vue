@@ -43,7 +43,7 @@
             <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
             <div class="relative">
               <img style="height:300px !important"
-                src="../assets/sandra1.png"
+                src="../assets/sandra.png"
                 alt="Sandra Kate Gudez - Nail Technician"
                 class="rounded-xl shadow-lg mx-auto transform transition-all duration-700 hover:scale-105 hover:shadow-2xl max-w-full h-auto relative z-10"
               />
@@ -85,16 +85,16 @@
           <!-- Trust indicators -->
           <div class="flex justify-center items-center space-x-6 animate-fade-in-up animation-delay-600">
             <div class="flex items-center">
-              <svg class="w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <svg class=" mb-2 w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
               </svg>
-              <span class="text-gray-600">4.9/5 Rating</span>
+              <span class="text-gray-600 mb-2"  >4.9/5 Rating</span>
             </div>
             <div class="flex items-center">
-              <svg class="w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <svg class="mb-2 w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-600">100+ Happy Clients</span>
+              <span class="text-gray-600 mb-2">100+ Happy Clients</span>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@
           <div v-if="isMobile" class="mt-12 space-y-8">
             <div v-for="(feature, index) in features" :key="index" class="pro-card p-6 animate-fade-in-up" :style="`animation-delay: ${600 + index * 200}ms`">
               <div class="flex items-center">
-                <div class="pro-icon mr-4">
+                <div class="pro-icon mr-4 flex-shrink-0">
                   <svg v-if="feature.icon === 'shield'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                   </svg>
@@ -945,40 +945,91 @@ section {
   font-family: var(--font-family);
 }
 
-/* Responsive improvements */
+/* Mobile-specific improvements */
 @media (max-width: 768px) {
-  .pro-heading {
-    font-size: 2rem;
+  /* Improved mobile layout for features and home services */
+  .pro-card {
+    padding: 1.25rem;
+    border-radius: 12px;
   }
   
+  /* Fixed icon container with proper alignment */
+  .pro-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 1rem;
+  }
+  
+  .pro-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #D4AF37; /* Gold color */
+  }
+  
+  /* Text container adjustments */
+  .text-left {
+    flex: 1;
+    padding-left: 0.5rem;
+  }
+  
+  /* Feature title and text adjustments */
+  .pro-feature-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+  
+  .pro-feature-text {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  
+  /* Section padding adjustments */
   .pro-section {
     padding: 3rem 0;
   }
   
-  .service-list-price {
-    position: static;
-    transform: none;
-    margin-top: 0.5rem;
+  /* Improved carousel styling */
+  .carousel-container {
+    padding: 0 1rem;
   }
   
-  .service-list-item:hover {
-    padding-left: 0;
+  .carousel-slide {
+    padding: 0 0.5rem;
   }
   
-  /* Mobile navigation adjustments */
-  .nav-link {
-    padding: 0.75rem 0;
-  }
-  
-  /* Mobile card adjustments */
-  .pro-card {
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Mobile button adjustments */
+  /* Button improvements */
   .btn-primary {
     padding: 10px 20px;
     font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Hero section adjustments */
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  /* Service card improvements */
+  .service-card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Design card improvements */
+  .design-card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Improved spacing for mobile */
+  .container {
+    padding: 0 1rem;
   }
 }
 </style>

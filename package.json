@@ -11,6 +11,8 @@
     "@mdi/font": "^7.4.47",
     "autoprefixer": "^10.4.2",
     "date-fns": "^4.1.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.3",
     "pinia": "^2.0.10",
     "pinia-plugin-persistedstate": "^4.5.0",
     "postcss": "^8.4.5",

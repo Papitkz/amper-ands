@@ -15,44 +15,49 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Service Categories</h2>
         
-        <!-- Mobile view: Single card with expandable sections -->
-        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
-          <div v-for="(category, index) in categories" :key="index" class="mb-6 last:mb-0">
-            <div 
-              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
-              @click="toggleCategory(index)"
-            >
-              <div class="flex items-center">
-                <div class="service-icon mr-4">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                  </svg>
-                </div>
-                <h3 class="text-lg font-bold">{{ category.name }}</h3>
+        <!-- Mobile view: List layout with zoom animation -->
+        <div v-if="isMobile" class="space-y-4">
+          <div 
+            v-for="(category, index) in categories" 
+            :key="index" 
+            class="service-card bg-white rounded-xl shadow-md p-5 border-l-4 border-yellow-500 animate-zoom-in"
+            :class="{ 'highlighted': highlightedItem === index }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index)"
+          >
+            <div class="flex items-center">
+              <div class="service-icon mr-4 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-lg font-bold truncate">{{ category.name }}</h3>
+                <p class="text-gray-600 text-sm mt-1 line-clamp-2">{{ category.description }}</p>
               </div>
               <svg 
-                class="w-5 h-5 transition-transform duration-300" 
-                :class="{ 'rotate-180': expandedCategory === index }" 
+                class="w-5 h-5 text-gray-400 ml-2 flex-shrink-0" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24" 
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
-            </div>
-            <div 
-              v-show="expandedCategory === index" 
-              class="mt-2 pl-16 pr-4 pb-2 text-gray-600 animate-fade-in"
-            >
-              {{ category.description }}
             </div>
           </div>
         </div>
         
         <!-- Desktop view: Grid layout -->
         <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(category, index) in categories" :key="index" class="girlie-card p-8 text-center animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
+          <div 
+            v-for="(category, index) in categories" 
+            :key="index" 
+            class="service-card girlie-card p-8 text-center animate-zoom-in hover-lift"
+            :class="{ 'highlighted': highlightedItem === index }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index)"
+          >
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -68,56 +73,52 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Popular Services</h2>
         
-        <!-- Mobile view: Single card with expandable sections -->
-        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
-          <div v-for="(popular, index) in popularServices" :key="index" class="mb-6 last:mb-0">
-            <div 
-              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
-              @click="togglePopularService(index)"
-            >
-              <div class="flex items-center">
-                <div class="service-icon mr-4">
+        <!-- Mobile view: List layout with zoom animation -->
+        <div v-if="isMobile" class="space-y-4">
+          <div 
+            v-for="(popular, index) in popularServices" 
+            :key="index" 
+            class="service-card bg-white rounded-xl shadow-md p-5 border-l-4 border-yellow-500 animate-zoom-in"
+            :class="{ 'highlighted': highlightedItem === index + 10 }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index + 10)"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex items-start flex-1 min-w-0">
+                <div class="service-icon mr-4 flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                   </svg>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold">{{ popular.name }}</h3>
-                  <span class="text-yellow-600 font-bold">{{ popular.price }}</span>
+                <div class="min-w-0">
+                  <h3 class="text-lg font-bold truncate">{{ popular.name }}</h3>
+                  <p class="text-yellow-600 font-bold mt-1">{{ popular.price }}</p>
                 </div>
               </div>
-              <svg 
-                class="w-5 h-5 transition-transform duration-300" 
-                :class="{ 'rotate-180': expandedPopularService === index }" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </div>
-            <div 
-              v-show="expandedPopularService === index" 
-              class="mt-2 pl-16 pr-4 pb-2 animate-fade-in"
-            >
-              <p class="text-gray-600 mb-2">{{ popular.description }}</p>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-500">{{ popular.duration }}</span>
+              <div class="text-right ml-4 flex-shrink-0">
+                <span class="text-sm text-gray-500 block">{{ popular.duration }}</span>
                 <router-link
                   to="/appointments"
-                  class="btn-primary text-sm"
+                  class="btn-primary text-sm mt-2 inline-block"
                 >
                   Book Now
                 </router-link>
               </div>
             </div>
+            <p class="text-gray-600 text-sm mt-3 ml-16 line-clamp-2">{{ popular.description }}</p>
           </div>
         </div>
         
         <!-- Desktop view: Grid layout -->
         <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(popular, index) in popularServices" :key="index" class="girlie-card overflow-hidden animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
+          <div 
+            v-for="(popular, index) in popularServices" 
+            :key="index" 
+            class="service-card girlie-card overflow-hidden animate-zoom-in hover-lift"
+            :class="{ 'highlighted': highlightedItem === index + 10 }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index + 10)"
+          >
             <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center">
               <div class="text-center">
                 <div class="service-icon mx-auto mb-4">
@@ -148,37 +149,43 @@
         </div>
       </div>
 
-      <!-- Complete Service Menu - Card/List Hybrid Design -->
+      <!-- Complete Service Menu - List Design -->
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Complete Service Menu</h2>
         
-        <div class="space-y-6 max-w-4xl mx-auto">
-          <div v-for="(service, index) in services" :key="index" class="service-list-item animate-fade-in-up" :style="`animation-delay: ${400 + index * 50}ms`">
-            <div class="flex flex-col md:flex-row md:items-center">
-              <div class="md:w-2/3 mb-4 md:mb-0 md:pr-6">
-                <h3 class="service-list-title">{{ service.name }}</h3>
-                <p class="service-list-description">{{ service.description }}</p>
-                <div class="flex flex-wrap">
-                  <span
-                    v-for="(tag, tagIndex) in service.tags"
-                    :key="tagIndex"
-                    class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded mr-2 mb-2"
-                  >
-                    {{ tag }}
-                  </span>
+        <div class="max-w-4xl mx-auto">
+          <div 
+            v-for="(service, index) in services" 
+            :key="index" 
+            class="service-card bg-white rounded-xl shadow-md p-5 mb-4 border-l-4 border-yellow-500 animate-zoom-in"
+            :class="{ 'highlighted': highlightedItem === index + 20 }"
+            :style="`animation-delay: ${index * 50}ms`"
+            @click="highlightItem(index + 20)"
+          >
+            <div class="flex flex-col">
+              <div class="flex justify-between items-start mb-3">
+                <div class="flex-1 min-w-0">
+                  <h3 class="service-list-title text-lg font-bold truncate">{{ service.name }}</h3>
+                  <p class="service-list-price text-lg font-bold text-yellow-600 mt-1 mr-3">{{ service.price }}</p>
                 </div>
-              </div>
-              <div class="md:w-1/3 flex flex-col items-end justify-between">
-                <span class="service-list-price">{{ service.price }}</span>
                 <router-link
                   to="/appointments"
-                  class="btn-primary text-sm w-full md:w-auto text-center"
+                  class="btn-primary text-sm ml-4 flex-shrink-0"
                 >
                   Book
                 </router-link>
               </div>
+              <p class="service-list-description text-gray-600 mb-3 line-clamp-2">{{ service.description }}</p>
+              <div class="flex flex-wrap">
+                <span
+                  v-for="(tag, tagIndex) in service.tags"
+                  :key="tagIndex"
+                  class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded mr-2 mb-2"
+                >
+                  {{ tag }}
+                </span>
+              </div>
             </div>
-            <div class="service-list-line"></div>
           </div>
         </div>
       </div>
@@ -187,47 +194,52 @@
       <div class="mb-20">
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Add-On Services</h2>
         
-        <!-- Mobile view: Single card with expandable sections -->
-        <div v-if="isMobile" class="girlie-card p-6 mb-8 animate-fade-in-up animation-delay-400">
-          <div v-for="(addon, index) in addons" :key="index" class="mb-6 last:mb-0">
-            <div 
-              class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg cursor-pointer transition-all duration-300 hover:bg-yellow-100"
-              @click="toggleAddon(index)"
-            >
-              <div class="flex items-center">
-                <div class="service-icon mr-4">
+        <!-- Mobile view: List layout with zoom animation -->
+        <div v-if="isMobile" class="space-y-4">
+          <div 
+            v-for="(addon, index) in addons" 
+            :key="index" 
+            class="service-card bg-white rounded-xl shadow-md p-5 border-l-4 border-yellow-500 animate-zoom-in"
+            :class="{ 'highlighted': highlightedItem === index + 30 }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index + 30)"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center flex-1 min-w-0">
+                <div class="service-icon mr-4 flex-shrink-0">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                   </svg>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold">{{ addon.name }}</h3>
-                  <span class="text-yellow-600 font-bold">{{ addon.price }}</span>
+                <div class="min-w-0">
+                  <h3 class="text-lg font-bold truncate">{{ addon.name }}</h3>
+                  <span class="text-yellow-600 font-bold mt-1">{{ addon.price }}</span>
                 </div>
               </div>
               <svg 
-                class="w-5 h-5 transition-transform duration-300" 
-                :class="{ 'rotate-180': expandedAddon === index }" 
+                class="w-5 h-5 text-gray-400 ml-2 flex-shrink-0" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24" 
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
             </div>
-            <div 
-              v-show="expandedAddon === index" 
-              class="mt-2 pl-16 pr-4 pb-2 animate-fade-in"
-            >
-              <p class="text-gray-600 mb-2">{{ addon.description }}</p>
-            </div>
+            <p class="text-gray-600 text-sm mt-3 ml-16 line-clamp-2">{{ addon.description }}</p>
           </div>
         </div>
         
         <!-- Desktop view: Grid layout -->
         <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div v-for="(addon, index) in addons" :key="index" class="girlie-card p-8 text-center animate-fade-in-up hover-lift" :style="`animation-delay: ${400 + index * 100}ms`">
+          <div 
+            v-for="(addon, index) in addons" 
+            :key="index" 
+            class="service-card girlie-card p-8 text-center animate-zoom-in hover-lift"
+            :class="{ 'highlighted': highlightedItem === index + 30 }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index + 30)"
+          >
             <div class="service-icon mx-auto mb-6">
               <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
@@ -241,7 +253,7 @@
       </div>
 
       <!-- Home Service Information -->
-      <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl shadow-lg p-10 mb-20 relative overflow-hidden animate-fade-in-up animation-delay-400">
+      <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl shadow-lg p-8 mb-20 relative overflow-hidden animate-zoom-in">
         <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full filter blur-3xl opacity-20 -mr-32 -mt-32"></div>
         <div class="absolute bottom-0 left-0 w-48 h-48 bg-yellow-100 rounded-full filter blur-3xl opacity-20 -ml-24 -mb-24"></div>
         
@@ -255,27 +267,27 @@
                 </svg>
                 What's Included
               </h3>
-              <ul class="text-gray-600">
-                <li class="mb-3 flex items-start">
-                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <ul class="text-gray-600 space-y-3">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                   <span>Professional nail technician with 10+ years experience</span>
                 </li>
-                <li class="mb-3 flex items-start">
-                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                   <span>All necessary equipment and premium products</span>
                 </li>
-                <li class="mb-3 flex items-start">
-                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                   <span>Transportation to your location within service area</span>
                 </li>
-                <li class="mb-3 flex items-start">
-                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                   <span>Complete setup and cleanup service</span>
@@ -309,25 +321,41 @@
       <div>
         <h2 class="text-2xl font-bold mb-10 text-center text-yellow-600 serif gold-accent animate-fade-in-up animation-delay-200">Our Service Process</h2>
         
-        <!-- Mobile view: Vertical steps -->
+        <!-- Mobile view: Vertical steps with zoom animation -->
         <div v-if="isMobile" class="max-w-md mx-auto">
-          <div v-for="(step, index) in serviceProcess" :key="index" class="flex mb-8 animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
-            <div class="flex flex-col items-center mr-4">
-              <div class="service-icon mb-2">
+          <div class="relative">
+            <!-- Vertical line connector -->
+            <div class="absolute left-6 top-6 bottom-0 w-1 bg-yellow-200"></div>
+            
+            <div 
+              v-for="(step, index) in serviceProcess" 
+              :key="index" 
+              class="relative flex mb-8 animate-zoom-in"
+              :class="{ 'highlighted': highlightedItem === index + 40 }"
+              :style="`animation-delay: ${index * 100}ms`"
+              @click="highlightItem(index + 40)"
+            >
+              <div class="service-icon z-10">
                 <span class="text-white font-bold">{{ index + 1 }}</span>
               </div>
-              <div v-if="index < serviceProcess.length - 1" class="w-1 h-16 bg-yellow-200"></div>
-            </div>
-            <div class="flex-1 pb-8">
-              <h3 class="font-bold mb-2">{{ step.title }}</h3>
-              <p class="text-gray-600 text-sm">{{ step.description }}</p>
+              <div class="ml-6 pb-8">
+                <h3 class="font-bold mb-2">{{ step.title }}</h3>
+                <p class="text-gray-600 text-sm">{{ step.description }}</p>
+              </div>
             </div>
           </div>
         </div>
         
         <!-- Desktop view: Horizontal steps -->
         <div v-else class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div v-for="(step, index) in serviceProcess" :key="index" class="text-center animate-fade-in-up" :style="`animation-delay: ${400 + index * 100}ms`">
+          <div 
+            v-for="(step, index) in serviceProcess" 
+            :key="index" 
+            class="service-card text-center animate-zoom-in"
+            :class="{ 'highlighted': highlightedItem === index + 40 }"
+            :style="`animation-delay: ${index * 100}ms`"
+            @click="highlightItem(index + 40)"
+          >
             <div class="relative">
               <div class="service-icon mx-auto mb-4">
                 <span class="text-white font-bold">{{ index + 1 }}</span>
@@ -352,9 +380,7 @@ export default {
   data() {
     return {
       isMobile: false,
-      expandedCategory: null,
-      expandedPopularService: null,
-      expandedAddon: null,
+      highlightedItem: null,
       categories: [
         {
           name: 'Gel Nails',
@@ -506,58 +532,187 @@ export default {
     checkIfMobile() {
       this.isMobile = window.innerWidth <= 768;
     },
-    toggleCategory(index) {
-      this.expandedCategory = this.expandedCategory === index ? null : index;
-    },
-    togglePopularService(index) {
-      this.expandedPopularService = this.expandedPopularService === index ? null : index;
-    },
-    toggleAddon(index) {
-      this.expandedAddon = this.expandedAddon === index ? null : index;
+    highlightItem(index) {
+      this.highlightedItem = index;
+      // Remove highlight after 1 second
+      setTimeout(() => {
+        this.highlightedItem = null;
+      }, 1000);
     }
   }
 }
 </script>
 
 <style scoped>
-.service-item {
+.service-card {
+  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
-.service-item:hover {
+.service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
 }
 
-@keyframes fadeInUp {
+/* Zoom in animation */
+@keyframes zoomIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease forwards;
+.animate-zoom-in {
+  animation: zoomIn 0.5s ease forwards;
   opacity: 0;
 }
 
-.animation-delay-50 {
-  animation-delay: 0.05s;
+/* Highlight effect */
+.highlighted {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FFEFBA 100%) !important;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  border-left-color: #D4AF37 !important;
+  border-left-width: 6px !important;
 }
 
-.animation-delay-100 {
-  animation-delay: 0.1s;
+/* Text truncation utilities */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.animation-delay-200 {
-  animation-delay: 0.2s;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.animation-delay-400 {
-  animation-delay: 0.4s;
+/* Service list styles */
+.service-list-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-list-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.service-list-price {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Better spacing for mobile */
+  .py-16 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Improved service card for mobile */
+  .service-card {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  
+  /* Better button styling for mobile */
+  .btn-primary {
+    width: 100%;
+    max-width: 120px;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Improved service process for mobile */
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  /* Ensure text doesn't overflow */
+  .min-w-0 {
+    min-width: 0;
+  }
+  
+  /* Better spacing for list items */
+  .space-y-3 > li {
+    padding: 0.25rem 0;
+  }
+}
+
+/* Professional typography improvements */
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Professional spacing improvements */
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+/* Professional padding improvements */
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+/* Professional shadow improvements */
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 </style>
